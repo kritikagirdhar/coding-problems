@@ -1,0 +1,47 @@
+#include<stdio.h>
+
+int binary(int arr[],int l,int r,int k)
+{
+    if(l<=r)
+    {
+        int q,s;
+       int m=(l+r)/2;
+        if(arr[m]==k)
+        {
+            return m;
+        }
+        else if(arr[l]<=arr[m])
+        {
+            if(k>=arr[l] && k<arr[m])
+            {
+                 return binary(arr,l,m-1,k);
+            }
+            else
+            {
+                return binary(arr,m+1,r,k);
+            }
+        }
+        else if(arr[m]<=k && k<=arr[r])
+        {
+            return binary(arr,m+1,r,k);
+        }
+            else
+         {
+             return binary(arr,l,m,k);
+        }
+    }
+}
+int main()
+{
+    int n;
+    scanf("%d",&n);
+    int arr[n];
+    int i;
+    for(i=0;i<n;i++)
+    {
+        scanf("%d",&arr[i]);
+    }
+    int p=binary(arr,0,n,9);
+    printf("%d\n",p);
+    return 0;
+}
